@@ -36,7 +36,6 @@ namespace engine
 
 		void Manager::update()
 		{
-			///Move on input managet
 			input::Manager::getInstance().clear();
 
 			sf::Event event;
@@ -60,7 +59,6 @@ namespace engine
 					break;
 				}
 			}
-			///
 		}
 
 		void Manager::clear()

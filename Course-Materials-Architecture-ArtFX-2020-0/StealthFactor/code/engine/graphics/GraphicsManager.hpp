@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <memory>
-
+#include <engine/graphics/IViewProvider.hpp>
 
 namespace engine
 {
@@ -20,6 +20,8 @@ namespace engine
 
 			static std::unique_ptr<Manager> instance;
 
+			const IViewProvider* viewProvider = nullptr;
+
 		public:
 			Manager();
 			~Manager();
@@ -35,6 +37,7 @@ namespace engine
 
 			static Manager &getInstance();
 
+			void setViewInterface(const IViewProvider* pViewProvider) { viewProvider = pViewProvider; }
 		};
 	}
 }

@@ -3,7 +3,6 @@
 #include <cassert>
 #include <SFML/Graphics/Shape.hpp>
 #include <engine/graphics/ShapeList.hpp>
-#include <engine/gameplay/GameplayManager.hpp> /**/
 
 namespace engine
 {
@@ -30,9 +29,7 @@ namespace engine
 		{
 			window.clear(sf::Color::Black);
 
-			//Need interface ?
-			sf::View view{ gameplay::Manager::getInstance().getViewCenter(), sf::Vector2f{(float)WINDOW_WIDTH, (float)WINDOW_HEIGHT} };
-			//////
+			sf::View view{ viewProvider->getViewCenter(), sf::Vector2f{ (float)WINDOW_WIDTH, (float)WINDOW_HEIGHT } };
 			window.setView(view);
 		}
 

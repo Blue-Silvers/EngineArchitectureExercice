@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include <SFML/System/Vector2.hpp>
+#include "engine/graphics/IViewProvider.hpp"
 
 namespace engine
 {
@@ -16,7 +17,7 @@ namespace engine
 			class Player;
 		}
 
-		class Manager
+		class Manager : public graphics::IViewProvider
 		{
 		public:
 			void update();
@@ -24,7 +25,7 @@ namespace engine
 
 			void gameOver();
 
-			sf::Vector2f getViewCenter() const;
+			sf::Vector2f getViewCenter() const override;
 
 			void loadMap(const std::string& mapName);
 			void loadNextMap();

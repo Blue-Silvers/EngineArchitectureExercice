@@ -39,6 +39,8 @@ namespace engine
 
 		gameplay::Manager::getInstance().loadMap(startMap);
 
+		graphics::Manager::getInstance().setViewInterface(&engine::gameplay::Manager::getInstance());
+
 		sf::Clock clock;
 		while (running)
 		{
