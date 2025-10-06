@@ -2,11 +2,8 @@
 
 #include <cassert>
 #include <SFML/Graphics/Shape.hpp>
-#include <SFML/Window/Event.hpp>
-#include <engine/input/InputManager.hpp>
 #include <engine/graphics/ShapeList.hpp>
-#include <engine/gameplay/GameplayManager.hpp>
-#include <engine/Engine.hpp>
+#include <engine/gameplay/GameplayManager.hpp> /**/
 
 namespace engine
 {
@@ -29,38 +26,13 @@ namespace engine
 			window.close();
 		}
 
-		void Manager::update()
-		{
-			input::Manager::getInstance().clear();
-
-			sf::Event event;
-			while (window.pollEvent(event))
-			{
-				switch (event.type)
-				{
-				case sf::Event::Closed:
-					Engine::getInstance().exit();
-					break;
-
-				case sf::Event::KeyPressed:
-					input::Manager::getInstance().onKeyPressed(event.key);
-					break;
-
-				case sf::Event::KeyReleased:
-					input::Manager::getInstance().onKeyReleased(event.key);
-					break;
-
-				default:
-					break;
-				}
-			}
-		}
-
 		void Manager::clear()
 		{
 			window.clear(sf::Color::Black);
 
+			//Need interface ?
 			sf::View view{ gameplay::Manager::getInstance().getViewCenter(), sf::Vector2f{(float)WINDOW_WIDTH, (float)WINDOW_HEIGHT} };
+			//////
 			window.setView(view);
 		}
 

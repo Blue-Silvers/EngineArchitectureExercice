@@ -25,6 +25,8 @@ namespace engine
 			void onKeyPressed(const sf::Event::KeyEvent &event);
 			void onKeyReleased(const sf::Event::KeyEvent &event);
 
+			void update();
+
 			static Manager &getInstance();
 
 		private:

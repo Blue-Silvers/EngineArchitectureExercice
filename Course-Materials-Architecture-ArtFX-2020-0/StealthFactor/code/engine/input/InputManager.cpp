@@ -2,6 +2,7 @@
 
 #include <iterator>
 #include <engine/graphics/GraphicsManager.hpp>
+#include <engine/Engine.hpp>
 
 namespace engine
 {
@@ -31,6 +32,35 @@ namespace engine
 				return false;
 
 			return justReleasedKeys.find(key) != std::end(justReleasedKeys);
+		}
+
+		void Manager::update()
+		{
+			///Move on input managet
+			input::Manager::getInstance().clear();
+
+			sf::Event event;
+			while (graphics::Manager::getInstance().getWindow().pollEvent(event))
+			{
+				switch (event.type)
+				{
+				case sf::Event::Closed:
+					Engine::getInstance().exit();
+					break;
+
+				case sf::Event::KeyPressed:
+					input::Manager::getInstance().onKeyPressed(event.key);
+					break;
+
+				case sf::Event::KeyReleased:
+					input::Manager::getInstance().onKeyReleased(event.key);
+					break;
+
+				default:
+					break;
+				}
+			}
+			///
 		}
 
 		void Manager::clear()

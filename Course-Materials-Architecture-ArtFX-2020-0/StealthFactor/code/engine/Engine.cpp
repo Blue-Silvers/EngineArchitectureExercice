@@ -46,7 +46,7 @@ namespace engine
 
 			physics::Manager::getInstance().update();
 			gameplay::Manager::getInstance().update();
-			graphics::Manager::getInstance().update();
+			input::Manager::getInstance().update();
 
 			graphics::Manager::getInstance().clear();
 

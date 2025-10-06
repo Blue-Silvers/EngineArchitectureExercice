@@ -12,20 +12,6 @@ namespace engine
 
 		class Manager
 		{
-		public:
-			Manager();
-			~Manager();
-
-			void update();
-
-			void clear();
-			void draw(const ShapeList &shapeList, const sf::Transform &transform);
-			void display();
-
-			bool hasFocus() const;
-
-			static Manager &getInstance();
-
 		private:
 			sf::RenderWindow window;
 
@@ -33,6 +19,22 @@ namespace engine
 			static const sf::Int16 WINDOW_HEIGHT = 600;
 
 			static std::unique_ptr<Manager> instance;
+
+		public:
+			Manager();
+			~Manager();
+
+			sf::RenderWindow& getWindow() { return window; }
+
+			void clear();
+			void draw(const ShapeList &shapeList, const sf::Transform &transform);
+			void display();
+
+			bool hasFocus() const;
+
+
+			static Manager &getInstance();
+
 		};
 	}
 }
