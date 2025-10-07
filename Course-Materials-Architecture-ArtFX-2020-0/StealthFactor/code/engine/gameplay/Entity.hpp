@@ -1,6 +1,10 @@
 #pragma once
 
+#include <vector>
+#include <string>
+#include <memory>
 #include <SFML/Graphics/Transform.hpp>
+#include <engine/gameplay/Components.hpp>
 
 namespace engine
 {
@@ -22,10 +26,31 @@ namespace engine
 
 			const sf::Transform &getTransform() const;
 
+			virtual void AddComponent(std::unique_ptr<Components> pComponents) //Add new components
+			{
+				mComponentsList.push_back(pComponents);
+			};
+			virtual std::vector<std::unique_ptr<Components>> GetAllComponent() //get components
+			{
+				return mComponentsList;
+			};
+			virtual void RemoveComponent(size_t index) //Remove one component
+			{
+				if (index >= 0 && mComponentsList.size() > index)
+				{
+					mComponentsList.erase(mComponentsList.begin() + index);
+				}
+			};
+			virtual void ClearComponent() //Delette all components
+			{
+				mComponentsList.clear();
+			};
+
 		private:
 			sf::Vector2f _position{};
 			float _rotation{ 0.f };
 			sf::Transform _transform;
+			std::vector<std::unique_ptr<Components>> mComponentsList;
 
 			void updateTransform();
 		};

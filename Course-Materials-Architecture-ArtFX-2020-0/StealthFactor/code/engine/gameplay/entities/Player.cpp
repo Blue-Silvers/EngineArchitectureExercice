@@ -4,10 +4,10 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Shape.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
-#include <engine/gameplay/GameplayManager.hpp>
-#include <engine/gameplay/entities/Target.hpp>
-#include <engine/input/InputManager.hpp>
-#include <engine/physics/PhysicsManager.hpp>
+#include <engine/gameplay/GameplayManager.hpp>/**/
+#include <engine/gameplay/entities/Target.hpp>/**/
+#include <engine/input/InputManager.hpp> /**/
+#include <engine/physics/PhysicsManager.hpp>/**/
 #include <engine/Engine.hpp>
 
 namespace engine
@@ -26,6 +26,7 @@ namespace engine
 
 			void Player::update()
 			{
+				//Go to MoveC
 				justMoved = false;
 				auto position = getPosition();
 				float rotation = getRotation();
@@ -66,6 +67,7 @@ namespace engine
 					dGeomSetPosition(collisionGeomId, position.x, position.y, 0);
 				}
 
+				//Go to ColliderC
 				auto collisions = physics::Manager::getInstance().getCollisionsWith(collisionGeomId);
 				for (auto &geomId : collisions)
 				{
