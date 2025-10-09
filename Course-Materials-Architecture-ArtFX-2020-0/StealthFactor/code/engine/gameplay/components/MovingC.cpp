@@ -12,54 +12,55 @@ namespace engine
 	{
 			void MovingC::Update()
 			{
-				justMoved = false;
-				auto position = mOwner->getPosition();
-				float rotation = mOwner->getRotation();
+					justMoved = false;
+					auto position = mOwner->getPosition();
+					float rotation = mOwner->getRotation();
 
-				if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Left))
-				{
-					justMoved = true;
-					position.x -= gameplay::Manager::CELL_SIZE;
-					rotation = 180.f;
-				}
-
-				if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Right))
-				{
-					justMoved = true;
-					position.x += gameplay::Manager::CELL_SIZE;
-					rotation = 0.f;
-				}
-
-				if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Up))
-				{
-					justMoved = true;
-					position.y -= gameplay::Manager::CELL_SIZE;
-					rotation = -90.f;
-				}
-
-				if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Down))
-				{
-					justMoved = true;
-					position.y += gameplay::Manager::CELL_SIZE;
-					rotation = 90.f;
-				}
-
-				if (justMoved)
-				{
-					mOwner->setPosition(position);
-					mOwner->setRotation(rotation);
-
-					for (const auto& component : mOwner->GetAllComponent())
+					if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Left))
 					{
-						if (auto* boxCollider = dynamic_cast<ColliderC*>(component.get()))
+						justMoved = true;
+						position.x -= gameplay::Manager::CELL_SIZE;
+						rotation = 180.f;
+					}
+
+					if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Right))
+					{
+						justMoved = true;
+						position.x += gameplay::Manager::CELL_SIZE;
+						rotation = 0.f;
+					}
+
+					if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Up))
+					{
+						justMoved = true;
+						position.y -= gameplay::Manager::CELL_SIZE;
+						rotation = -90.f;
+					}
+
+					if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Down))
+					{
+						justMoved = true;
+						position.y += gameplay::Manager::CELL_SIZE;
+						rotation = 90.f;
+					}
+
+					if (justMoved)
+					{
+						mOwner->setPosition(position);
+						mOwner->setRotation(rotation);
+
+						for (Components* component : mOwner->GetAllComponent())
 						{
-							dGeomSetPosition(boxCollider->GetCollisionGeomId(), position.x, position.y, 0);
+							if (ColliderC* boxCollider = dynamic_cast<ColliderC*>(component))
+							{
+								dGeomSetPosition(boxCollider->GetCollisionGeomId(), position.x, position.y, 0);
+							}
 						}
 					}
-				}
+
 			}
 
-			MovingC::MovingC(std::unique_ptr<Entity> pOwner, int pUpdateOrder) : Components(std::move(pOwner), pUpdateOrder)
+			MovingC::MovingC(Entity* pOwner, int pUpdateOrder) : Components(pOwner, pUpdateOrder)
 			{
 			}
 

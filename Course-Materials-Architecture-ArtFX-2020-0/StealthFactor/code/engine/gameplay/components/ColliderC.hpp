@@ -4,8 +4,6 @@
 #include <ode/collision.h>
 #include <engine/gameplay/Components.hpp>
 
-class Entity;
-
 namespace engine
 {
 	namespace gameplay
@@ -16,8 +14,8 @@ namespace engine
 			dGeomID collisionGeomId;
 
 		public:
-			ColliderC(std::unique_ptr<Entity> pOwner, int pUpdateOrder, dGeomID pCollisionGeomId); //Component constructor with owner and default update order
-			ColliderC() = delete; //Delete default constructor
+			ColliderC(Entity* pOwner, int pUpdateOrder, dGeomID pCollisionGeomId); //Component constructor with owner and default update order
+			~ColliderC();
 
 			inline dGeomID GetCollisionGeomId() { return collisionGeomId ; }
 

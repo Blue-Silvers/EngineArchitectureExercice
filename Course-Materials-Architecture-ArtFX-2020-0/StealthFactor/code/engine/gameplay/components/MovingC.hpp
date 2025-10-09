@@ -3,8 +3,6 @@
 #include <memory>
 #include <engine/gameplay/Components.hpp>
 
-class Entity;
-
 namespace engine
 {
 	namespace gameplay
@@ -15,8 +13,7 @@ namespace engine
 			bool justMoved{ false };
 
 		public:
-			MovingC(std::unique_ptr<Entity> pOwner, int pUpdateOrder = 100); //Component constructor with owner and default update order
-			MovingC() = delete; //Delete default constructor
+			MovingC(Entity* pOwner, int pUpdateOrder = 100); //Component constructor with owner and default update order
 
 			bool hasJustMoved() const;
 

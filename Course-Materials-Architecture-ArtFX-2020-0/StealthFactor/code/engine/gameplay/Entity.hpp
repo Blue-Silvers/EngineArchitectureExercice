@@ -26,11 +26,11 @@ namespace engine
 
 			const sf::Transform &getTransform() const;
 
-			virtual void AddComponent(std::unique_ptr<Components> pComponents) //Add new components
+			virtual void AddComponent(Components* pComponents) //Add new components
 			{
 				mComponentsList.push_back(pComponents);
 			};
-			virtual std::vector<std::unique_ptr<Components>> GetAllComponent() //get components
+			virtual std::vector<Components*> GetAllComponent() //get components
 			{
 				return mComponentsList;
 			};
@@ -50,7 +50,7 @@ namespace engine
 			sf::Vector2f _position{};
 			float _rotation{ 0.f };
 			sf::Transform _transform;
-			std::vector<std::unique_ptr<Components>> mComponentsList;
+			std::vector<Components*> mComponentsList;
 
 			void updateTransform();
 		};

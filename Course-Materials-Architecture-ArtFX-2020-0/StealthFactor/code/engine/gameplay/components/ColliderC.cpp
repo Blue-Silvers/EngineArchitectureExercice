@@ -10,8 +10,9 @@ namespace engine
 {
 	namespace gameplay
 	{
-		ColliderC::ColliderC(std::unique_ptr<Entity> pOwner, int pUpdateOrder, dGeomID pCollisionGeomId) : Components(std::move(pOwner), pUpdateOrder), collisionGeomId(pCollisionGeomId)
+		ColliderC::ColliderC(Entity* pOwner, int pUpdateOrder, dGeomID pCollisionGeomId) : Components(pOwner, pUpdateOrder), collisionGeomId(pCollisionGeomId)
 		{
+			collisionGeomId = pCollisionGeomId;
 			collisionGeomId = dCreateBox(physics::Manager::getInstance().getSpaceId(), 0.f, 0.f, 0.f);
 			dGeomSetData(collisionGeomId, this);
 		}
