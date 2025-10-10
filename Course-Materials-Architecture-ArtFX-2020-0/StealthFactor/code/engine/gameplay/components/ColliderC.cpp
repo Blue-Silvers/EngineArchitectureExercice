@@ -10,10 +10,9 @@ namespace engine
 {
 	namespace gameplay
 	{
-		ColliderC::ColliderC(Entity* pOwner, int pUpdateOrder, dGeomID pCollisionGeomId) : Components(pOwner, pUpdateOrder), collisionGeomId(pCollisionGeomId)
+		ColliderC::ColliderC(Entity* pOwner, int pUpdateOrder, bool pActive) : Components(pOwner, pUpdateOrder, pActive)
 		{
-			collisionGeomId = pCollisionGeomId;
-			collisionGeomId = dCreateBox(physics::Manager::getInstance().getSpaceId(), 0.f, 0.f, 0.f);
+			collisionGeomId = dCreateBox(physics::Manager::getInstance().getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f);
 			dGeomSetData(collisionGeomId, this);
 		}
 
@@ -29,13 +28,18 @@ namespace engine
 				auto collisions = physics::Manager::getInstance().getCollisionsWith(collisionGeomId);
 				for (auto& geomId : collisions)
 				{
-					auto entity = reinterpret_cast<Entity*>(dGeomGetData(geomId));
-					auto targetEntity = dynamic_cast<entities::Target*>(entity);
+					auto entity = reinterpret_cast<ColliderC*>(dGeomGetData(geomId));
+					auto targetEntity = dynamic_cast<entities::Target*>(entity->GetOwner());
 					if (targetEntity)
 					{
 						gameplay::Manager::getInstance().loadNextMap();
 					}
 				}
+			}
+			else
+			{
+				auto& position = mOwner->getPosition();
+				dGeomSetPosition(collisionGeomId, position.x, position.y, 0);
 			}
 		}
 

@@ -9,7 +9,7 @@ namespace engine
 		{
 		}
 
-		Components::Components(Entity* pOwner,int pUpdateOrder) : mOwner(pOwner), mUpdateOrder(pUpdateOrder)
+		Components::Components(Entity* pOwner,int pUpdateOrder, bool pActive) : mOwner(pOwner), mUpdateOrder(pUpdateOrder), mIsActive(pActive)
 		{
 		}
 

@@ -14,7 +14,7 @@ namespace engine
 			dGeomID collisionGeomId;
 
 		public:
-			ColliderC(Entity* pOwner, int pUpdateOrder, dGeomID pCollisionGeomId); //Component constructor with owner and default update order
+			ColliderC(Entity* pOwner, int pUpdateOrder, bool pActive = true); //Component constructor with owner and default update order
 			~ColliderC();
 
 			inline dGeomID GetCollisionGeomId() { return collisionGeomId ; }

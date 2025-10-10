@@ -1,6 +1,5 @@
 #pragma once
 
-#include <ode/collision.h>/**/
 #include <engine/graphics/ShapeList.hpp>
 #include <engine/gameplay/Entity.hpp>
 
@@ -20,9 +19,6 @@ namespace engine
 
 			protected:
 				graphics::ShapeList shapeList;
-				dGeomID collisionGeomId;
-
-				bool isWalking{ false };
 			};
 		}
 	}

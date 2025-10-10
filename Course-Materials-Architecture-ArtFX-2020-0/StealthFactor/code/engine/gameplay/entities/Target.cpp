@@ -1,8 +1,7 @@
 #include "Target.hpp"
 
-#include <engine/gameplay/GameplayManager.hpp>
 #include <engine/graphics/GraphicsManager.hpp>
-#include <engine/physics/PhysicsManager.hpp>
+#include <engine/gameplay/components/ColliderC.hpp>
 
 namespace engine
 {
@@ -14,19 +13,19 @@ namespace engine
 			{
 				shapeList.load("target");
 
-				collisionGeomId = dCreateBox(physics::Manager::getInstance().getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f);
-				dGeomSetData(collisionGeomId, this);
+				AddComponent(new ColliderC(this, 1, false));
 			}
 
 			Target::~Target()
 			{
-				dGeomDestroy(collisionGeomId);
 			}
 
 			void Target::update()
 			{
-				auto &position = getPosition();
-				dGeomSetPosition(collisionGeomId, position.x, position.y, 0);
+				for (Components* components : GetAllComponent())
+				{
+					components->Update();
+				}
 			}
 
 			void Target::draw()
