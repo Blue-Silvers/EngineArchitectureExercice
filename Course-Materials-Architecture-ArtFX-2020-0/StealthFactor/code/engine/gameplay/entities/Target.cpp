@@ -1,7 +1,7 @@
 #include "Target.hpp"
 
 #include <engine/graphics/GraphicsManager.hpp>
-#include <engine/gameplay/components/ColliderC.hpp>
+//#include <engine/gameplay/components/ColliderC.hpp>/**/
 
 namespace engine
 {
@@ -13,7 +13,15 @@ namespace engine
 			{
 				shapeList.load("target");
 
-				AddComponent(new ColliderC(this, 1, false));
+				collider = AddComponent<ColliderC>(static_cast<IEntity*>(this), 1, false);
+
+				/*for (auto& component : GetAllComponent())
+				{
+					if (auto* collider = dynamic_cast<ColliderC*>(component.get()))
+					{
+						collider->Activate(false);
+					}
+				}*/
 			}
 
 			Target::~Target()
@@ -22,9 +30,9 @@ namespace engine
 
 			void Target::update()
 			{
-				for (Components* components : GetAllComponent())
+				for (auto& component : GetAllComponent())
 				{
-					components->Update();
+					component->Update();
 				}
 			}
 

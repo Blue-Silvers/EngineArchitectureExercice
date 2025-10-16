@@ -1,26 +1,24 @@
 #pragma once
-
-
+#include "engine/gameplay/IEntity.hpp"
 
 namespace engine
 {
 	namespace gameplay
 	{
-		class Entity;
-
 		class Components
 		{
 		protected:
 			bool mIsActive{ true };
-			Entity* mOwner;
+			IEntity* mOwner = nullptr;
 			int mUpdateOrder;
 
 		public:
-			Components(Entity* pOwner);
-			Components(Entity* pOwner, int pUpdateOrder, bool pActive = true); //Component constructor with owner and default update order
+			Components(IEntity* pOwner);
+			Components(IEntity* pOwner, int pUpdateOrder, bool pActive = true); //Component constructor with owner and default update order
+			virtual ~Components() = default;
 
 			inline bool Activate(bool pIsActive) { mIsActive = pIsActive ; }
-			inline Entity* GetOwner() { return mOwner; }
+			inline IEntity* GetOwner() { return mOwner; }
 			virtual void OnStart() = 0;
 			virtual void Update() = 0;
 			virtual void OnEnd() = 0;

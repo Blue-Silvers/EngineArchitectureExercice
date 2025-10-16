@@ -3,6 +3,7 @@
 #include <ode/collision.h>
 #include <engine/graphics/ShapeList.hpp>
 #include <engine/gameplay/Entity.hpp>
+#include <engine/gameplay/components/ColliderC.hpp>
 
 namespace engine
 {
@@ -23,6 +24,7 @@ namespace engine
 			private:
 				graphics::ShapeList shapeList;
 				dGeomID collisionGeomId;
+				ColliderC* collider = nullptr;
 			};
 		}
 	}

@@ -14,10 +14,13 @@ namespace engine
 			dGeomID collisionGeomId;
 
 		public:
-			ColliderC(Entity* pOwner, int pUpdateOrder, bool pActive = true); //Component constructor with owner and default update order
+			ColliderC(IEntity* owner, int updateOrder = 1, bool active = true);//Component constructor with owner and default update order
 			~ColliderC();
 
 			inline dGeomID GetCollisionGeomId() { return collisionGeomId ; }
+
+			void SetActive(bool active) { mIsActive = active; }
+			bool IsActive() const { return mIsActive; }
 
 			void Update() override;
 			virtual void OnStart() {};

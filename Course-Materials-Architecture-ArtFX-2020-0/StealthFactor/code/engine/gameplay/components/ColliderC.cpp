@@ -1,7 +1,7 @@
 #include "ColliderC.hpp"
 
-#include <engine/gameplay/Entity.hpp>
-#include <ode/collision.h>
+//#include <engine/gameplay/Entity.hpp>/**/
+//#include <ode/collision.h>/**/
 #include <engine/physics/PhysicsManager.hpp>
 #include <engine/gameplay/GameplayManager.hpp>
 #include <engine/gameplay/entities/Target.hpp>
@@ -10,7 +10,7 @@ namespace engine
 {
 	namespace gameplay
 	{
-		ColliderC::ColliderC(Entity* pOwner, int pUpdateOrder, bool pActive) : Components(pOwner, pUpdateOrder, pActive)
+		ColliderC::ColliderC(IEntity* pOwner, int updateOrder, bool active) : Components(pOwner, updateOrder, active)
 		{
 			collisionGeomId = dCreateBox(physics::Manager::getInstance().getSpaceId(), gameplay::Manager::CELL_SIZE * 0.9f, gameplay::Manager::CELL_SIZE * 0.9f, 1.f);
 			dGeomSetData(collisionGeomId, this);
@@ -38,8 +38,9 @@ namespace engine
 			}
 			else
 			{
-				auto& position = mOwner->getPosition();
-				dGeomSetPosition(collisionGeomId, position.x, position.y, 0);
+				float x, y, z;
+				mOwner->getPosition(x, y, z);
+				dGeomSetPosition(collisionGeomId, x, y, 0);
 			}
 		}
 

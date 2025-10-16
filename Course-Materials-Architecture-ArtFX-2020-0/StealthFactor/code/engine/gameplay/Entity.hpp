@@ -5,14 +5,16 @@
 #include <memory>
 #include <SFML/Graphics/Transform.hpp>
 #include <engine/gameplay/Components.hpp>
+#include <engine/gameplay/IEntity.hpp>
 
 namespace engine
 {
 	namespace gameplay
 	{
-		class Entity
+		class Entity : public IEntity
 		{
 		public:
+			Entity() = default;
 			virtual ~Entity() = default;
 
 			virtual void update() = 0;
@@ -21,19 +23,23 @@ namespace engine
 			const sf::Vector2f &getPosition() const;
 			void setPosition(const sf::Vector2f &newPosition);
 
-			float getRotation() const;
-			void setRotation(float newRotation);
-
 			const sf::Transform &getTransform() const;
 
-			virtual void AddComponent(Components* pComponents) //Add new components
+			template <typename T, typename... Args>
+			T* AddComponent(Args&&... args)
 			{
-				mComponentsList.push_back(pComponents);
-			};
-			virtual std::vector<Components*> GetAllComponent() //get components
-			{
-				return mComponentsList;
-			};
+				auto component = std::make_unique<T>(this, std::forward<Args>(args)...);
+				T* ptr = component.get();
+				mComponentsList.push_back(std::move(component));
+				return ptr;
+			}
+
+			void setPosition(float x, float y, float z = 0.f) override;
+			void setRotation(float angle) override;
+			void getPosition(float& x, float& y, float& z) const override;
+			float getRotation() const override;
+			const std::vector<std::unique_ptr<Components>>& GetAllComponent() const override;
+
 			virtual void RemoveComponent(size_t index) //Remove one component
 			{
 				if (index >= 0 && mComponentsList.size() > index)
@@ -50,7 +56,7 @@ namespace engine
 			sf::Vector2f _position{};
 			float _rotation{ 0.f };
 			sf::Transform _transform;
-			std::vector<Components*> mComponentsList;
+			std::vector<std::unique_ptr<Components>> mComponentsList;
 
 			void updateTransform();
 		};

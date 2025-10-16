@@ -13,7 +13,7 @@ namespace engine
 			bool justMoved{ false };
 
 		public:
-			MovingC(Entity* pOwner, int pUpdateOrder = 100); //Component constructor with owner and default update order
+			MovingC(IEntity* pOwner, int updateOrder = 1, bool active = true); //Component constructor with owner and default update order
 
 			bool hasJustMoved() const;
 
