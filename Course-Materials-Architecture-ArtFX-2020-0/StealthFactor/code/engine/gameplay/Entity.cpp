@@ -5,9 +5,8 @@ namespace engine
 	namespace gameplay
 	{
 
-		void Entity::setPosition(float x, float y, float z)
+		void Entity::setPosition(float x, float y)
 		{
-			(void)z;
 			_position = sf::Vector2f(x, y);
 			updateTransform();
 		}
@@ -18,11 +17,10 @@ namespace engine
 			updateTransform();
 		}
 
-		void Entity::getPosition(float& x, float& y, float& z) const
+		void Entity::getPosition(float& x, float& y) const
 		{
 			x = _position.x;
 			y = _position.y;
-			z = 0.f;
 		}
 
 		const std::vector<std::unique_ptr<Components>>& Entity::GetAllComponent() const

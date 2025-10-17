@@ -18,8 +18,8 @@ namespace engine
 		{
 			justMoved = false;
 
-			float x, y, z;
-			mOwner->getPosition(x, y, z);
+			float x, y;
+			mOwner->getPosition(x, y);
 			float rotation = mOwner->getRotation();
 
 			if (input::Manager::getInstance().isKeyJustPressed(sf::Keyboard::Left))
@@ -52,14 +52,14 @@ namespace engine
 
 			if (justMoved)
 			{
-				mOwner->setPosition(x, y, z);
+				mOwner->setPosition(x, y);
 				mOwner->setRotation(rotation);
 
 				for (auto& component : mOwner->GetAllComponent())
 				{
 					if (auto* boxCollider = dynamic_cast<ColliderC*>(component.get()))
 					{
-						dGeomSetPosition(boxCollider->GetCollisionGeomId(), x, y, z);
+						dGeomSetPosition(boxCollider->GetCollisionGeomId(), x, y, 0);
 					}
 				}
 			}

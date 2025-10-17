@@ -34,9 +34,9 @@ namespace engine
 				return ptr;
 			}
 
-			void setPosition(float x =0.f, float y = 0.f, float z = 0.f) override;
+			void setPosition(float x =0.f, float y = 0.f) override;
 			void setRotation(float angle) override;
-			void getPosition(float& x, float& y, float& z) const override;
+			void getPosition(float& x, float& y) const override;
 			float getRotation() const override;
 			const std::vector<std::unique_ptr<Components>>& GetAllComponent() const override;
 

@@ -38,8 +38,8 @@ namespace engine
 			}
 			else
 			{
-				float x, y, z;
-				mOwner->getPosition(x, y, z);
+				float x, y;
+				mOwner->getPosition(x, y);
 				dGeomSetPosition(collisionGeomId, x, y, 0);
 			}
 		}
