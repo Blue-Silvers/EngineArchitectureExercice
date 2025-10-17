@@ -1,12 +1,6 @@
 #include "engine/gameplay/entities/Player.hpp"
 
-//#include <ode/collision.h>/**/
-//#include <SFML/Graphics/Color.hpp>/**/
-//#include <SFML/Graphics/Shape.hpp>/**/
-//#include <SFML/Graphics/CircleShape.hpp>/**/
-//#include <engine/Engine.hpp>/**/
-//
-//#include <engine/gameplay/components/ColliderC.hpp>/**/
+#include <engine/gameplay/components/ColliderC.hpp>
 #include <engine/gameplay/components/MovingC.hpp>
 
 namespace engine

@@ -1,6 +1,5 @@
 #include "MovingC.hpp"
 
-//#include <engine/gameplay/Entity.hpp>/**/
 #include <engine/input/InputManager.hpp>
 #include <engine/gameplay/GameplayManager.hpp>
 #include <engine/gameplay/components/ColliderC.hpp>

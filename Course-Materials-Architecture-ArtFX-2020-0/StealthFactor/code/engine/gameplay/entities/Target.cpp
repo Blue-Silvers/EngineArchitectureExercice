@@ -1,7 +1,7 @@
 #include "Target.hpp"
 
 #include <engine/graphics/GraphicsManager.hpp>
-//#include <engine/gameplay/components/ColliderC.hpp>/**/
+#include <engine/gameplay/components/ColliderC.hpp>
 
 namespace engine
 {
@@ -13,15 +13,8 @@ namespace engine
 			{
 				shapeList.load("target");
 
-				collider = AddComponent<ColliderC>(1, false);
+				AddComponent<ColliderC>(1, false);
 
-				/*for (auto& component : GetAllComponent())
-				{
-					if (auto* collider = dynamic_cast<ColliderC*>(component.get()))
-					{
-						collider->Activate(false);
-					}
-				}*/
 			}
 
 			Target::~Target()

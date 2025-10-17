@@ -1,7 +1,5 @@
 #include "ColliderC.hpp"
 
-//#include <engine/gameplay/Entity.hpp>/**/
-//#include <ode/collision.h>/**/
 #include <engine/physics/PhysicsManager.hpp>
 #include <engine/gameplay/GameplayManager.hpp>
 #include <engine/gameplay/entities/Target.hpp>

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <engine/gameplay/entities/Character.hpp>
-#include <engine/gameplay/components/ColliderC.hpp>
 
 namespace engine
 {
