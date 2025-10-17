@@ -13,7 +13,7 @@ namespace engine
 			{
 				shapeList.load("target");
 
-				collider = AddComponent<ColliderC>(static_cast<IEntity*>(this), 1, false);
+				collider = AddComponent<ColliderC>(1, false);
 
 				/*for (auto& component : GetAllComponent())
 				{

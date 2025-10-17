@@ -34,7 +34,7 @@ namespace engine
 				return ptr;
 			}
 
-			void setPosition(float x, float y, float z = 0.f) override;
+			void setPosition(float x =0.f, float y = 0.f, float z = 0.f) override;
 			void setRotation(float angle) override;
 			void getPosition(float& x, float& y, float& z) const override;
 			float getRotation() const override;

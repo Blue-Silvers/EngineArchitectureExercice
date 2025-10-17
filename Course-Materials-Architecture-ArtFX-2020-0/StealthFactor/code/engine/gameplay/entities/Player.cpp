@@ -19,8 +19,8 @@ namespace engine
 			{
 				shapeList.load("player");
 
-				collider = AddComponent<ColliderC>(static_cast<IEntity*>(this));
-				AddComponent<MovingC>(this);
+				AddComponent<ColliderC>(1, true);
+				AddComponent<MovingC>(1, true);
 			}
 
 			void Player::update()

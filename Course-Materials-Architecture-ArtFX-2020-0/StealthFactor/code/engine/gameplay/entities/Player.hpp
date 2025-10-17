@@ -20,7 +20,6 @@ namespace engine
 
 			private:
 				bool justMoved{ false };
-				ColliderC* collider = nullptr;
 			};
 		}
 	}

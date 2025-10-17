@@ -7,6 +7,7 @@ namespace engine
 
 		void Entity::setPosition(float x, float y, float z)
 		{
+			(void)z;
 			_position = sf::Vector2f(x, y);
 			updateTransform();
 		}

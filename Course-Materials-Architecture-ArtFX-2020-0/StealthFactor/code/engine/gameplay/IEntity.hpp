@@ -14,7 +14,7 @@ namespace engine
         public:
             virtual ~IEntity() = default;
 
-            virtual void setPosition(float x, float y, float z = 0.f) = 0;
+            virtual void setPosition(float x = 0.f, float y = 0.f, float z = 0.f) = 0;
             virtual void setRotation(float angle) = 0;
             virtual void getPosition(float& x, float& y, float& z) const = 0;
             virtual float getRotation() const = 0;
